@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Relatório de Vendas UNIUOL</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background: #f5f6fa;
+}
+
+h1 {
+    color: #2c3e50;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.container {
+    margin-bottom: 40px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+p {
+    line-height: 1.5;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Relatório Comercial – Últimos 12 Meses</h1>
+
+<div class="container card">
+<h2>Resumo Executivo</h2>
+<p>
+O curso <b>MBA IA Aplicada a Lideranças</b> (incluindo o antigo nome Liderança Estratégica) lidera as vendas, seguido por Finanças Corporativas e Marketing Digital. 
+Observa-se forte dependência de vendas orgânicas (AON), enquanto campanhas como <b>Aniversário UNIUOL</b> e <b>Volta às Aulas</b> são os principais impulsionadores sazonais. 
+As vendas estão concentradas em alunos oriundos de grandes instituições privadas como UNIP, Anhembi Morumbi e Mackenzie, evidenciando um perfil alinhado ao mercado de educação em massa.
+</p>
+</div>
+
+<div class="container card">
+<h2>Cursos Mais Vendidos</h2>
+<canvas id="cursosChart"></canvas>
+</div>
+
+<div class="container card">
+<h2>Principais Campanhas</h2>
+<canvas id="campChart"></canvas>
+</div>
+
+<div class="container card">
+<h2>Top Faculdades de Origem</h2>
+<canvas id="facChart"></canvas>
+</div>
+
+<script>
+// Cursos
+new Chart(document.getElementById('cursosChart'), {
+    type: 'bar',
+    data: {
+        labels: [
+            'IA Lideranças',
+            'Finanças',
+            'Marketing',
+            'Projetos',
+            'Cibersegurança',
+            'Processos'
+        ],
+        datasets: [{
+            label: 'Vendas',
+            data: [6000, 5500, 4500, 3500, 2000, 900],
+            backgroundColor: 'rgba(52,152,219,0.7)'
+        }]
+    }
+});
+
+// Campanhas
+new Chart(document.getElementById('campChart'), {
+    type: 'bar',
+    data: {
+        labels: [
+            'AON',
+            'Aniversário UNIUOL',
+            'Volta às Aulas',
+            'Promo Month'
+        ],
+        datasets: [{
+            label: 'Vendas',
+            data: [10320, 3814, 2401, 3000],
+            backgroundColor: 'rgba(46,204,113,0.7)'
+        }]
+    }
+});
+
+// Faculdades
+new Chart(document.getElementById('facChart'), {
+    type: 'bar',
+    data: {
+        labels: [
+            'UNIP',
+            'Anhembi Morumbi',
+            'Mackenzie',
+            'Uninove',
+            'FMU',
+            'FAAP'
+        ],
+        datasets: [{
+            label: 'Vendas',
+            data: [750, 715, 530, 489, 339, 311],
+            backgroundColor: 'rgba(231,76,60,0.7)'
+        }]
+    }
+});
+</script>
+
+</body>
+</html>
