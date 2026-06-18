@@ -2,72 +2,97 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Relatório de Vendas UNIUOL</title>
+<title>Dashboard Comercial UNIUOL</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 body {
     font-family: Arial, sans-serif;
-    margin: 40px;
-    background: #f5f6fa;
+    margin: 30px;
+    background: #111;
+    color: #fff;
 }
 
 h1 {
-    color: #2c3e50;
-}
-
-h2 {
-    margin-bottom: 10px;
-}
-
-.container {
-    margin-bottom: 40px;
+    color: #f1c40f;
 }
 
 .card {
-    background: white;
+    background: #1c1c1c;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    border-radius: 8px;
 }
 
-p {
-    line-height: 1.5;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.kpi {
+    font-size: 22px;
+    font-weight: bold;
+    color: #f39c12;
+}
+
+canvas {
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Relatório Comercial – Últimos 12 Meses</h1>
+<h1>📊 Dashboard Comercial - Últimos 12 meses</h1>
 
-<div class="container card">
+<div class="grid">
+  <div class="card">
+    <div>Total de Vendas</div>
+    <div class="kpi">22.400</div>
+  </div>
+
+  <div class="card">
+    <div>% AON</div>
+    <div class="kpi">46%</div>
+  </div>
+
+  <div class="card">
+    <div>Ticket Médio</div>
+    <div class="kpi">R$ 9.300</div>
+  </div>
+</div>
+
+<div class="card">
 <h2>Resumo Executivo</h2>
 <p>
-O curso <b>MBA IA Aplicada a Lideranças</b> (incluindo o antigo nome Liderança Estratégica) lidera as vendas, seguido por Finanças Corporativas e Marketing Digital. 
-Observa-se forte dependência de vendas orgânicas (AON), enquanto campanhas como <b>Aniversário UNIUOL</b> e <b>Volta às Aulas</b> são os principais impulsionadores sazonais. 
-As vendas estão concentradas em alunos oriundos de grandes instituições privadas como UNIP, Anhembi Morumbi e Mackenzie, evidenciando um perfil alinhado ao mercado de educação em massa.
+O portfólio apresenta forte concentração em cursos voltados à evolução executiva, com destaque absoluto para IA aplicada à liderança (27% das vendas). 
+A operação ainda depende fortemente de vendas orgânicas (AON), representando quase metade do volume, enquanto campanhas como Aniversário e Volta às Aulas 
+atuam como principais alavancas sazonais. Há alta concentração de origem em grandes instituições privadas, indicando um público massificado e com forte potencial de escalabilidade.
 </p>
 </div>
 
-<div class="container card">
-<h2>Cursos Mais Vendidos</h2>
-<canvas id="cursosChart"></canvas>
+<div class="card">
+<h2>Top 6 Cursos (% Venda)</h2>
+<canvas id="cursos"></canvas>
 </div>
 
-<div class="container card">
-<h2>Principais Campanhas</h2>
-<canvas id="campChart"></canvas>
+<div class="card">
+<h2>Top Campanhas (% Venda)</h2>
+<canvas id="campanhas"></canvas>
 </div>
 
-<div class="container card">
-<h2>Top Faculdades de Origem</h2>
-<canvas id="facChart"></canvas>
+<div class="card">
+<h2>Top 10 Faculdades</h2>
+<canvas id="faculdades"></canvas>
 </div>
 
 <script>
-// Cursos
-new Chart(document.getElementById('cursosChart'), {
+
+// Cursos (%)
+new Chart(document.getElementById('cursos'), {
     type: 'bar',
     data: {
         labels: [
@@ -79,50 +104,57 @@ new Chart(document.getElementById('cursosChart'), {
             'Processos'
         ],
         datasets: [{
-            label: 'Vendas',
-            data: [6000, 5500, 4500, 3500, 2000, 900],
-            backgroundColor: 'rgba(52,152,219,0.7)'
+            label: '% de vendas',
+            data: [27, 25, 20, 16, 9, 3],
+            backgroundColor: '#f39c12'
         }]
     }
 });
 
-// Campanhas
-new Chart(document.getElementById('campChart'), {
+// Campanhas (%)
+new Chart(document.getElementById('campanhas'), {
     type: 'bar',
     data: {
         labels: [
             'AON',
-            'Aniversário UNIUOL',
+            'Aniversário',
             'Volta às Aulas',
-            'Promo Month'
+            'Promo Month',
+            'Semana Pós',
+            'Black Friday'
         ],
         datasets: [{
-            label: 'Vendas',
-            data: [10320, 3814, 2401, 3000],
-            backgroundColor: 'rgba(46,204,113,0.7)'
+            label: '% de vendas',
+            data: [46, 17, 11, 13, 8, 5],
+            backgroundColor: '#f1c40f'
         }]
     }
 });
 
-// Faculdades
-new Chart(document.getElementById('facChart'), {
+// Faculdades Top 10
+new Chart(document.getElementById('faculdades'), {
     type: 'bar',
     data: {
         labels: [
             'UNIP',
-            'Anhembi Morumbi',
+            'Anhembi',
             'Mackenzie',
             'Uninove',
             'FMU',
-            'FAAP'
+            'FAAP',
+            'FECAP',
+            'USP',
+            'PUC-SP',
+            'ESPM'
         ],
         datasets: [{
-            label: 'Vendas',
-            data: [750, 715, 530, 489, 339, 311],
-            backgroundColor: 'rgba(231,76,60,0.7)'
+            label: 'Volume de vendas',
+            data: [750, 715, 530, 489, 339, 311, 290, 260, 240, 220],
+            backgroundColor: '#e67e22'
         }]
     }
 });
+
 </script>
 
 </body>
